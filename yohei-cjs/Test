@@ -1,3 +1,9 @@
 #!/bin/bash
 
-./translate "1920-05-07" | diff -u expected1 -
+for date in \
+    1920-05-07 \
+    1912-07-29 \
+    1912-07-30 \
+; do
+    ./translate $date
+done | diff -u expected1 -
