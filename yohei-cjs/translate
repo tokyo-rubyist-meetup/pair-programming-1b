@@ -8,4 +8,9 @@ eras = [
     ['1868-09-08', '明治'],
 ]
 era_start, era = eras.drop_while { |date, era| date > ARGV[0] }[0]
-puts(era + 'implement me!')
+era_start_year = Integer(era_start.match(/^\d{4}/)[0])
+
+match = ARGV[0].match(/^(\d{4})-(\d\d)-(\d\d)$/)
+raise "Unparsable date: #{ARGV[0]}" unless match
+year, month, day = match[1].to_i, match[2].to_i, match[3].to_i
+printf("%s%d年%02d月%02d日\n", era, year-era_start_year+1, month, day)
