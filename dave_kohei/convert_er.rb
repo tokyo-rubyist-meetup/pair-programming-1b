@@ -15,7 +15,8 @@ class EraConverter
 
     eras.each do |e|
       if source_date >= e[:start]
-        return "#{e[:string]}#{source_date.year - (e[:start].year - 1)}年"
+        year_string = source_date.year - (e[:start].year - 1)
+        return "#{e[:string]}#{year_string == 1 ? '元' : year_string}年"
       end
     end
   end
