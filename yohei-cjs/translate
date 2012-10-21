@@ -4,9 +4,9 @@
 # Convert number represented as a one- or two-digit string to kanji.
 def to_kanji(dd)
     d1, d2 = dd.length == 1 ? ['0', dd[0]-48] : [dd[0]-48, dd[1]-48]
-    case d1 when 0: ''
-            when 1: 'JUU'
-            else    to_kanji_single(d1.to_i)        ;end \
+    case d1 when 0 then ''
+            when 1 then 'JUU'
+                   else to_kanji_single(d1.to_i)        ;end \
         + to_kanji_single(d2.to_s)
 end
 
