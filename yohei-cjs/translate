@@ -1,10 +1,23 @@
 #!/usr/bin/env ruby
 # -*- coding: utf-8 -*-
 
+# Convert number represented as a one- or two-digit string to kanji.
+def to_kanji(dd)
+    d1, d2 = dd.length == 1 ? ['0', dd[0]-48] : [dd[0]-48, dd[1]-48]
+    case d1 when 0: ''
+            when 1: 'JUU'
+            else    to_kanji_single(d1.to_i)        ;end \
+        + to_kanji_single(d2.to_s)
+end
+
+def to_kanji_single(n)
+    n.to_s
+end
+
 date  = ARGV[0]
 match = date.match(/^(\d{4})-(\d\d)-(\d\d)$/)
 raise "Unparsable date: #{ARGV[0]}" unless match
-year, month, day = match[1].to_i, match[2].to_i, match[3].to_i
+year, month, day = match[1].to_i, match[2], match[3]
 
 eras = [
     ['1989-01-08', '平成'],
@@ -15,4 +28,5 @@ eras = [
 era_start, era = eras.drop_while { |start, era| start > date }[0]
 era_start_year = Integer(era_start.match(/^\d{4}/)[0])
 
-printf("%s%d年%02d月%02d日\n", era, year-era_start_year+1, month, day)
+printf("%s%s年%s月%s日\n", era, to_kanji((year-era_start_year+1).to_s),
+    to_kanji(month), to_kanji(day))
