@@ -1,3 +1,3 @@
 #!/bin/bash
 
-./translate "2010-01-01" | diff -u expected1 -
+./translate "2010-10-20" | diff -u expected1 -
