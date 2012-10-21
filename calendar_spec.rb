@@ -30,5 +30,9 @@ describe Calendar do
   it "should work for Meiji dates (motto furui)" do
     Calendar.convert("1868-09-08").should == "明治01年09月08日"
   end
+
+  it "should throw error for pre-Meiji dates" do
+    expect{Calendar.convert("1868-09-01")}.to raise_error(ArgumentError)
+  end
 end
 
