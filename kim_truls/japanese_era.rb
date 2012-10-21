@@ -3,19 +3,18 @@ require 'rspec'
 require 'date'
 
 module JapaneseEra
+    Eras = {"平成" => Date.new(1989, 1, 8),
+        "昭和" => Date.new(1926, 12, 25),
+        "大正" => Date.new(1912, 07, 30),
+        "明治" => Date.new(1868, 9, 8),
+    }
+
     def self.convert date_str
         date = Date.parse(date_str)
         date_str_jp = ""
-        if date >= Date.new(1989,1,8)
-            date_str_jp = "平成#{date.year - 1988}年#{date.month}月#{date.day}日"
-        elsif date >= Date.new(1926, 12, 25)
-            date_str_jp = "昭和#{date.year - 1925}年#{date.month}月#{date.day}日"
-        elsif date >= Date.new(1912, 07, 30)
-            date_str_jp = "大正#{date.year - 1911}年#{date.month}月#{date.day}日"
-        else 
-            date_str_jp = "明治#{date.year - 1867}年#{date.month}月#{date.day}日"
+        Eras.each do |era, start|
+            return "#{era}#{date.year - start.year + 1}年#{date.month}月#{date.day}日" if date >= start
         end
-         return date_str_jp
     end
 end
 
