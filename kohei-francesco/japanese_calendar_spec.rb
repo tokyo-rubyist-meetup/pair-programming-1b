@@ -58,4 +58,9 @@ describe "english to japanese calendar" do
     date = Calendar.new("1988-01-01").convert
     date.should == "昭和63年1月1日"
   end
+
+  it "converts date to japanese" do
+    date = Calendar.new("1868-12-01").convert
+    date.should == "明治1年12月1日"
+  end
 end
