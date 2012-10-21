@@ -22,5 +22,9 @@ describe Calendar do
   it "should work for Showa dates (natsukashii)" do
     Calendar.convert("1979-08-08").should == "昭和54年08月08日"
   end
+
+it "should work for Taisho dates (furui)" do
+  Calendar.convert("1912-07-30").should == "大正01年07月30日"
+end
 end
 
