@@ -7,4 +7,4 @@ eras = [
     ['1868-09-08', '明治'],
 ]
 era = eras.drop_while { |date, era| date > ARGV[0] }[0]
-p(era)
+puts(era[1] + 'implement me!')
