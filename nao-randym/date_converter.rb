@@ -14,7 +14,7 @@ def convert(input_date)
     if range.include? date
       nengo = era
       nengo_year = date.year - range.first.year + 1
-      output = date.strftime("#{nengo}#{nengo_year}年%m月%d日")
+      output = date.strftime("#{nengo}#{nengo_year}年%-m月%-d日")
     end
   end
   output
@@ -29,5 +29,13 @@ class TestFoo < Test::Unit::TestCase
     assert_equal('平成24年10月20日', ret)
   end
 
+  def test_showa_end
+    ret = convert('1989-01-07')
+    assert_equal('昭和64年1月7日', ret)
+  end
 
+  def test_heisei_start
+    ret = convert('1989-01-08')
+    assert_equal('平成1年1月8日', ret)
+  end
 end
