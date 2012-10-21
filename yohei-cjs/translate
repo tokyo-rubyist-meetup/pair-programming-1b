@@ -1,16 +1,18 @@
 #!/usr/bin/env ruby
 # -*- coding: utf-8 -*-
 
+date  = ARGV[0]
+match = date.match(/^(\d{4})-(\d\d)-(\d\d)$/)
+raise "Unparsable date: #{ARGV[0]}" unless match
+year, month, day = match[1].to_i, match[2].to_i, match[3].to_i
+
 eras = [
     ['1989-01-08', '平成'],
     ['1926-12-25', '昭和'],
     ['1912-07-30', '大正'],
     ['1868-09-08', '明治'],
 ]
-era_start, era = eras.drop_while { |date, era| date > ARGV[0] }[0]
+era_start, era = eras.drop_while { |start, era| start > date }[0]
 era_start_year = Integer(era_start.match(/^\d{4}/)[0])
 
-match = ARGV[0].match(/^(\d{4})-(\d\d)-(\d\d)$/)
-raise "Unparsable date: #{ARGV[0]}" unless match
-year, month, day = match[1].to_i, match[2].to_i, match[3].to_i
 printf("%s%d年%02d月%02d日\n", era, year-era_start_year+1, month, day)
