@@ -1,5 +1,7 @@
 # Japanese Era Calendar Scheme
 
+## 日本語暦変換プログラム
+
 If you've ever had to fill out paperwork in Japan, you know that the country uses two systems for counting dates: the western [Gregorian calendar](http://en.wikipedia.org/wiki/Gregorian_calendar), and the [Japanese era calendar scheme](http://en.wikipedia.org/wiki/Japanese_era_name), which uses the combination of the reigning Emperor's name and year since his birth.
 
 Write a program that takes a Gregorian date as an input, give the Japanese era date as an output. For example, with 2012-10-20 as an input, the output would be 平成24年10月20日.
